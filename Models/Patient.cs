@@ -32,7 +32,7 @@ namespace Models
         [Required]
         public string? Patient_UserName { get; set; }
         [Required]
-        public string? Patient_Password { get; set; }
+        public string? Patient_HashedPassword { get; set; }
 
     }
 

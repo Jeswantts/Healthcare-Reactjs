@@ -11,7 +11,6 @@ namespace Models
         [Required]
         public string? Doctor_Name { get; set; }
         [Required]
-        [Range(1, 150)]
         public int Age { get; set; }
         [Required]
         [RegularExpression("^(male|female|other)$")]
