@@ -2,6 +2,7 @@
 {
     public interface IPatientDTO<T>
     {
-        public Task<T> Get(T item);
+        public Task<ICollection<T>> Get();
+        public Task<T> UpdateDto(T item, int id);
     }
 }

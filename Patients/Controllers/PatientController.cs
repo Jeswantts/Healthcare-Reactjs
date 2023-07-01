@@ -18,11 +18,15 @@ namespace Patients.Controllers
             this.p = p;
         }
         [HttpGet("Patients_Profile")]
-        public async Task<Patient_Profile_DTO> GetDTO(Patient_Profile_DTO item)
+        public async Task<ICollection<Patient_Profile_DTO>> GetDTO()
         {
-            return await service.Get(item);
+            return await service.Get();
         }
-
+        [HttpPut("UpdateDTO/{id}")]
+        public async Task<Patient_Profile_DTO> UpdateDTO(Patient_Profile_DTO dto, int id)
+        {
+            return await service.UpdateDto(dto, id);
+        }
 
         [HttpGet]
         public async Task<ICollection<Patient>> Get()
