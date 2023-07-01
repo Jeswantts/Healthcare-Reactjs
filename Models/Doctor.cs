@@ -50,7 +50,7 @@ namespace Models
         public DateTime LastLogin { get; set; }
         [NotMapped]
         public IFormFile file { get; set; }
-        public ICollection<Patient>? Patients { get; set; }
+        public ICollection<Patient>? Patient { get; set; }
     }
 
 }

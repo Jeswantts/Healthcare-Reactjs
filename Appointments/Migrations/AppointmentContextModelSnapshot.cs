@@ -57,7 +57,7 @@ namespace Appointments.Migrations
 
                     b.HasIndex("Patient_ID");
 
-                    b.ToTable("appoinment");
+                    b.ToTable("Appoinment");
                 });
 
             modelBuilder.Entity("Models.Doctor", b =>
@@ -213,13 +213,13 @@ namespace Appointments.Migrations
             modelBuilder.Entity("Models.Patient", b =>
                 {
                     b.HasOne("Models.Doctor", null)
-                        .WithMany("Patients")
+                        .WithMany("Patient")
                         .HasForeignKey("Doctor_ID");
                 });
 
             modelBuilder.Entity("Models.Doctor", b =>
                 {
-                    b.Navigation("Patients");
+                    b.Navigation("Patient");
                 });
 #pragma warning restore 612, 618
         }

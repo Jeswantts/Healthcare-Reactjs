@@ -12,14 +12,22 @@ namespace Patients.Service
         {
             context = _context;
         }
-        public Task<Patient> DeleteById(int id)
+        public async Task<Patient> DeleteById(int id)
         {
-            throw new NotImplementedException();
+            var patient = await context.Patient.FindAsync(id);
+
+            if (patient != null)
+            {
+                context.Patient.Remove(patient);
+                await context.SaveChangesAsync();
+            }
+
+            return patient;
         }
 
         public async Task<ICollection<Patient>> GetAll()
         {
-            var patient = await context.patients.ToListAsync();
+            var patient = await context.Patient.ToListAsync();
             if (patient != null)
             {
                 return patient;
@@ -27,19 +35,44 @@ namespace Patients.Service
             return null;
         }
 
-        public Task<Patient> GetById(int id)
+        public async Task<Patient> GetById(int id)
         {
-            throw new NotImplementedException();
+            var patient = await context.Patient.FindAsync(id);
+            return patient;
         }
 
-        public Task<Patient> Post(Patient patient)
+        public async Task<Patient> Post(Patient patient)
         {
-            throw new NotImplementedException();
+            context.Patient.Add(patient);
+            await context.SaveChangesAsync();
+            return patient;
         }
 
-        public Task<Patient> Put(Patient patient, int id)
+        public async Task<Patient> Put(Patient patient, int id)
         {
-            throw new NotImplementedException();
+            var existingPatient = await context.Patient.FindAsync(id);
+
+            if (existingPatient != null)
+            {
+
+                existingPatient.Patient_Name = patient.Patient_Name;
+                existingPatient.Age = patient.Age;
+                existingPatient.Gender = patient.Gender;
+                existingPatient.BloodGroup = patient.BloodGroup;
+                existingPatient.Patient_Address = patient.Patient_Address;
+                existingPatient.Patient_Phone = patient.Patient_Phone;
+                existingPatient.Patient_Email = patient.Patient_Email;
+                existingPatient.Patient_UserName = patient.Patient_UserName;
+                existingPatient.Patient_HashedPassword = patient.Patient_HashedPassword;
+
+
+                await context.SaveChangesAsync();
+                return existingPatient;
+            }
+            else
+            {
+                throw new Exception("Patient not found");
+            }
         }
     }
 }

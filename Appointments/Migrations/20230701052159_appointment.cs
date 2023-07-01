@@ -3,16 +3,16 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Doctors.Migrations
+namespace Appointments.Migrations
 {
     /// <inheritdoc />
-    public partial class docc : Migration
+    public partial class appointment : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "doctor",
+                name: "Doctor",
                 columns: table => new
                 {
                     Doctor_ID = table.Column<int>(type: "int", nullable: false)
@@ -38,7 +38,7 @@ namespace Doctors.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_doctor", x => x.Doctor_ID);
+                    table.PrimaryKey("PK_Doctor", x => x.Doctor_ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -46,7 +46,7 @@ namespace Doctors.Migrations
                 columns: table => new
                 {
                     Patient_ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "100, 1"),
                     Patient_Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Age = table.Column<int>(type: "int", nullable: false),
                     Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -55,33 +55,69 @@ namespace Doctors.Migrations
                     Patient_Phone = table.Column<long>(type: "bigint", nullable: false),
                     Patient_Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Patient_UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Patient_HashedPassword = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Doctor_ID = table.Column<int>(type: "int", nullable: false)
+                    Patient_HashedPassword = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Patient", x => x.Patient_ID);
+                    
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Appoinment",
+                columns: table => new
+                {
+                    Appoinment_ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "10000, 1"),
+                    Patient_ID = table.Column<int>(type: "int", nullable: false),
+                    Doctor_ID = table.Column<int>(type: "int", nullable: false),
+                    Reason_of_visit = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Patient_Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Diagnosis = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Treatment = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Appoinment", x => x.Appoinment_ID);
                     table.ForeignKey(
-                        name: "FK_Patient_doctor_Doctor_ID",
+                        name: "FK_Appoinment_Doctor_Doctor_ID",
                         column: x => x.Doctor_ID,
-                        principalTable: "doctor",
-                        principalColumn: "Doctor_ID");
+                        principalTable: "Doctor",
+                        principalColumn: "Doctor_ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Appoinment_Patient_Patient_ID",
+                        column: x => x.Patient_ID,
+                        principalTable: "Patient",
+                        principalColumn: "Patient_ID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Patient_Doctor_ID",
-                table: "Patient",
+                name: "IX_Appoinment_Doctor_ID",
+                table: "Appoinment",
                 column: "Doctor_ID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Appoinment_Patient_ID",
+                table: "Appoinment",
+                column: "Patient_ID");
+
+            
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Appoinment");
+
+            migrationBuilder.DropTable(
                 name: "Patient");
 
             migrationBuilder.DropTable(
-                name: "doctor");
+                name: "Doctor");
         }
     }
 }

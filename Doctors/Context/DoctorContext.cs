@@ -5,10 +5,11 @@ namespace Doctors.Context
 {
     public class DoctorContext : DbContext
     {
+        public DbSet<Doctor> Doctor { get; set; }
         public DoctorContext(DbContextOptions options) : base(options)
         {
 
         }
-        public DbSet<Doctor> doctor { get; set; }
+        
     }
 }

@@ -12,6 +12,7 @@ namespace Models
     {
         [Key]
         public int Patient_ID { get; set; }
+        
         [Required]
         public string? Patient_Name { get; set; }
         [Required]
@@ -33,6 +34,7 @@ namespace Models
         public string? Patient_UserName { get; set; }
         [Required]
         public string? Patient_HashedPassword { get; set; }
+
 
     }
 

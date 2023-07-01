@@ -9,6 +9,6 @@ namespace Appointments.Context
         {
 
         }
-        public DbSet<Appoinment> appoinment { get; set; }
+        public DbSet<Appoinment> Appoinment { get; set; }
     }
 }

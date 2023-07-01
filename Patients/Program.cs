@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Patients.Context;
+using Patients.DTO;
+using Patients.Interface;
+using Patients.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +13,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<PatientContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("jeswant")));
-
+builder.Services.AddScoped<IPatient,PatientRepo>();
+builder.Services.AddScoped<IPatientDTO<Patient_Profile_DTO>, PatientService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
