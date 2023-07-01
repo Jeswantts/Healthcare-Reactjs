@@ -7,6 +7,6 @@
         public string? Gender { get; set; }
         public string? BloodGroup { get; set; }
         public string? Patient_Address { get; set; }
-        public int Patient_Phone { get; set; }
+        public long Patient_Phone { get; set; }
     }
 }

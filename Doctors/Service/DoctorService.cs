@@ -1,6 +1,7 @@
 ﻿using Doctors.Context;
 using Doctors.DTO;
 using Doctors.Interface;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Doctors.Service
 {
@@ -13,14 +14,22 @@ namespace Doctors.Service
             repo = _repo;
             this.context = context;
         }
-        public Task<ICollection<Doctor_Patient_DTO>> Get()
+        public async Task<ICollection<Doctor_Patient_DTO>> Get()
         {
-            throw new NotImplementedException();
-        }
+            var doctors = await repo.GetAll();
+            var doctorPatientDTOs = doctors.Select(d => new Doctor_Patient_DTO
+            {
+                ImageName = d.ImageName,
+                Doctor_Name = d.Doctor_Name,
+                Doctor_Mobile = d.Doctor_Mobile,
+                Specialization = d.Specialization,
+                Doctor_Experience = d.Doctor_Experience,
+                Constulting_Day = d.Constulting_Day,
+                Constulting_Time = d.Constulting_Time,
+                Review = d.Review
+            }).ToList();
 
-        public Task<Doctor_Patient_DTO> UpdateDto(Doctor_Patient_DTO item, int id)
-        {
-            throw new NotImplementedException();
+            return doctorPatientDTOs;
         }
     }
 }

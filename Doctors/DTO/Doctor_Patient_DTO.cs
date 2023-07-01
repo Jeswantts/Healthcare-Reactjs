@@ -8,7 +8,8 @@ namespace Doctors.DTO
         public string? Doctor_Name { get; set; }
         public int Age { get; set; }
         public string? Specialization { get; set; }
-        public int Doctor_Mobile { get; set; }
+        public string? Doctor_Experience { get; set; }
+        public long Doctor_Mobile { get; set; }
         public string? Constulting_Day { get; set; }
         public DateTime Constulting_Time { get; set; }
         public string? Review { get; set; }

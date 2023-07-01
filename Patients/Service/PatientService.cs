@@ -26,7 +26,7 @@ namespace Patients.Service
                 Gender = patient.Gender,
                 BloodGroup = patient.BloodGroup,
                 Patient_Address = patient.Patient_Address,
-                Patient_Phone = (int)patient.Patient_Phone
+                Patient_Phone = patient.Patient_Phone
             }).ToList();
 
             return patientProfileDTOs;
@@ -57,7 +57,7 @@ namespace Patients.Service
                 Gender = patient.Gender,
                 BloodGroup = patient.BloodGroup,
                 Patient_Address = patient.Patient_Address,
-                Patient_Phone = (int)patient.Patient_Phone
+                Patient_Phone = patient.Patient_Phone
             };
 
             return updatedProfileDto;

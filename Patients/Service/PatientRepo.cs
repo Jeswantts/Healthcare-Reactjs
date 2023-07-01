@@ -2,6 +2,7 @@
 using Models;
 using Patients.Context;
 using Patients.Interface;
+using System.Numerics;
 
 namespace Patients.Service
 {
@@ -41,8 +42,10 @@ namespace Patients.Service
             return patient;
         }
 
-        public async Task<Patient> Post(Patient patient)
+        public async Task<Patient> Post(Patient patient, string password)
         {
+            string hashedPassword = PasswordHasher.HashPassword(password);
+            patient.Patient_HashedPassword = hashedPassword;
             context.Patient.Add(patient);
             await context.SaveChangesAsync();
             return patient;
@@ -73,6 +76,11 @@ namespace Patients.Service
             {
                 throw new Exception("Patient not found");
             }
+        }
+
+        public bool VerifyPassword(string password, string hashedPassword)
+        {
+            return PasswordHasher.VerifyPassword(password, hashedPassword);
         }
     }
 }
