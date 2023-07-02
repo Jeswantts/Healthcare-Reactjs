@@ -20,8 +20,8 @@ function App() {
           <Navbar.Toggle aria-controls="basic-navbar-nav"/>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link as={NavLink} to="/Home" activeClassName="active">
-                Home
+              <Nav.Link as={NavLink} to="/Patient" activeClassName="active">
+              Patient
               </Nav.Link>
               <Nav.Link as={NavLink} to="/Doctor" activeClassName="active">
               Doctor

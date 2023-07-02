@@ -2,6 +2,7 @@ import React from "react";
 import { Component } from "react";
 import { toast } from "react-toastify";
 import { VariablesD } from "./VariableD";
+import axios from "axios";
 
 export default class Doctor extends Component {
     constructor(props) {
@@ -222,6 +223,20 @@ export default class Doctor extends Component {
             toast.error("Error updating doctor:", error);
           });
       };
+
+      changeStatus = async (doctorId, newStatus) => {
+        try {
+          const response = await axios.post(`https://localhost:7258/api/Doctor/${doctorId}/activation`, {
+            status: newStatus,
+          });
+          console.log(response.data);
+          this.fetchDoctor();
+          // Handle successful activation
+        } catch (error) {
+          console.error('An error occurred during doctor activation', error);
+          // Handle error
+        }
+      };
   
       handleDoctorNameInputChange = (event) => {
         this.setState({ doctor_Name: event.target.value });
@@ -293,6 +308,8 @@ export default class Doctor extends Component {
       handleFileChange = (event) => {
         this.setState({ file:event.target.files[0]});
       };
+
+      
       
   
   
@@ -585,6 +602,32 @@ export default class Doctor extends Component {
                         >
                           Update
                         </button>
+                        <div className="d-flex justify-content-around">
+        <button
+          className={`btn btn-sm ${
+            item.status === "active" ? "btn-success" : "btn-secondary"
+          }`}
+          onClick={() => this.changeStatus(item.doctor_ID, "active")}
+        >
+          Active
+        </button>
+        <button
+          className={`btn btn-sm ${
+            item.status === "inactive" ? "btn-danger" : "btn-secondary"
+          }`}
+          onClick={() => this.changeStatus(item.doctor_ID, "inactive")}
+        >
+          Inactive
+        </button>
+        <button
+          className={`btn btn-sm ${
+            item.status === "pending" ? "btn-warning" : "btn-secondary"
+          }`}
+          onClick={() => this.changeStatus(item.doctor_ID, "pending")}
+        >
+          Pending
+        </button>
+      </div>
                       </td>
                     </tr>
                   ))}
