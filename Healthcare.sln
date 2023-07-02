@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Doctors", "Doctors\Doctors.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Patients", "Patients\Patients.csproj", "{35A563FC-9D59-447B-8FCC-AD45E19D179D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Appointments", "Appointments\Appointments.csproj", "{49DC68EF-18BE-4372-B67F-120044551F81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Appointments", "Appointments\Appointments.csproj", "{49DC68EF-18BE-4372-B67F-120044551F81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Admins", "Admins\Admins.csproj", "{68927AAE-AA0A-43A3-8BAA-028669B0D302}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{49DC68EF-18BE-4372-B67F-120044551F81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49DC68EF-18BE-4372-B67F-120044551F81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49DC68EF-18BE-4372-B67F-120044551F81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68927AAE-AA0A-43A3-8BAA-028669B0D302}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68927AAE-AA0A-43A3-8BAA-028669B0D302}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68927AAE-AA0A-43A3-8BAA-028669B0D302}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68927AAE-AA0A-43A3-8BAA-028669B0D302}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
