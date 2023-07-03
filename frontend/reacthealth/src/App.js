@@ -11,6 +11,7 @@ import Patient from './Components/Patient';
 import Register from './Components/Register';
 import DoctorReg from './Components/DoctorReg';
 import DoctorProfile from './Components/DoctorProfile';
+import Appointment from './Components/Appointment';
 function App() {
   return (
     <BrowserRouter>
@@ -29,8 +30,8 @@ function App() {
               <Nav.Link as={NavLink} to="/DoctorReg" activeClassName="active">
               DoctorReg
               </Nav.Link>
-              <Nav.Link as={NavLink} to="/Image" activeClassName="active">
-                Image
+              <Nav.Link as={NavLink} to="/Appointment" activeClassName="active">
+              Appointment
               </Nav.Link>
               <Nav.Link as={NavLink} to="/DoctorProfile" activeClassName="active">
               DoctorProfile
@@ -53,6 +54,7 @@ function App() {
         <Route path='/Register' Component={Register}></Route>
         <Route path='/DoctorReg' Component={DoctorReg}></Route>
         <Route path='/DoctorProfile' Component={DoctorProfile}></Route>
+        <Route path='/Appointment' Component={Appointment}></Route>
       </Routes>
     </div>
     </BrowserRouter>

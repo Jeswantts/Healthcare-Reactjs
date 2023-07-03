@@ -22,7 +22,7 @@ function DoctorProfile() {
       .catch((error) => {
         console.error('Error fetching doctor details:', error);
       });
-  }); 
+    }, []);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;

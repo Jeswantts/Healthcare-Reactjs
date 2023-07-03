@@ -93,3 +93,48 @@
     margin-bottom: -15%;
     color: #495057;
 }
+
+.login-form {
+    padding: 10%;
+    margin-top: 10%;
+  }
+  
+  .login-form input {
+    border: none;
+    border-radius: 1.5rem;
+    padding: 10%;
+    width: 60%;
+    background: #f8f9fa;
+    font-weight: bold;
+    color: #383d41;
+    margin-top: 3%;
+    margin-bottom: 3%;
+  }
+  
+  .login-form .btnLogin {
+    float: right;
+    margin-top: 10%;
+    border: none;
+    border-radius: 1.5rem;
+    padding: 2%;
+    background: #0062cc;
+    color: #fff;
+    font-weight: 600;
+    width: 50%;
+    cursor: pointer;
+  }
+  
+  .login-form .register-link {
+    margin-top: 3%;
+    text-align: center;
+  }
+  
+  .login-form .register-link a {
+    color: #0062cc;
+    text-decoration: none;
+  }
+  
+  .login-form .register-link a:hover {
+    text-decoration: underline;
+  }
+  
