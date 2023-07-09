@@ -32,12 +32,12 @@ namespace Appointments.Controllers
         }
 
         [HttpPut("Status")]
-        public async Task<Status_DTO> Status(Status_DTO status, int id)
+        public async Task<Status_DTO> Status(Status_DTO status)
         {
-            return await _service.Status(status,id);
+            return await _service.Status(status);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("ByDoctor/{id}")]
         public async Task<Appoinment> GetById(int id)
         {
             var appointments = await a.GetById(id);
@@ -61,6 +61,12 @@ namespace Appointments.Controllers
         public async Task<Appoinment> DeleteById(int id)
         {
             var appointments = await a.DeleteById(id);
+            return appointments;
+        }
+        [HttpGet("FilterbyDoctor/{id}")]
+        public async Task<List<Appoinment>>Filter(int id)
+        {
+            var appointments = await _service.FilterByDoctor(id);
             return appointments;
         }
     }

@@ -17,7 +17,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DoctorContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("jeswant")));
 builder.Services.AddScoped<IDoctor, DoctorRepo>();
-builder.Services.AddScoped<IDoctorDTO<Doctor_Patient_DTO>, DoctorService>();
+builder.Services.AddScoped<IDoctorDTO, DoctorService>();
 
 ConfigurationManager configuration = builder.Configuration;
 builder.Services.AddAuthentication(options =>

@@ -1,6 +1,7 @@
 ﻿using Appointments.Context;
 using Appointments.DTO;
 using Appointments.Interface;
+using Microsoft.EntityFrameworkCore;
 using Models;
 
 namespace Appointments.Service
@@ -45,18 +46,32 @@ namespace Appointments.Service
             return appoint;
         }
 
-        public async Task<Status_DTO> Status(Status_DTO status, int id)
+        public async Task<Status_DTO> Status(Status_DTO status)
         {
-            var appointment = await repo.GetById(id);
+            var appointment = await repo.GetById(status.Appointment_ID);
+            if (appointment == null)
+            {
+                return null; // Or return any other appropriate response
+            }
+
             if (status.Status != null)
+            {
                 appointment.Status = status.Status;
+            }
 
             await context.SaveChangesAsync();
+
             var updatedStatus_DTO = new Status_DTO
             {
-                Status = appointment.Status,
+                Status = appointment.Status
             };
+
             return updatedStatus_DTO;
+        }
+        public async Task<List<Appoinment>> FilterByDoctor(int id)
+        {
+            var appointments = await context.Appoinment.Where(a => a.Doctor_ID == id).ToListAsync();
+            return appointments;
         }
     }
 }

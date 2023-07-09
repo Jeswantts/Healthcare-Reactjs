@@ -31,16 +31,16 @@ namespace Patients.Controllers
         {
             if (loginDTO != null && !string.IsNullOrEmpty(loginDTO.Username) && !string.IsNullOrEmpty(loginDTO.Password))
             {
-                var doctor = await GetPatient(loginDTO.Username);
-                if (doctor != null && PasswordHasher.VerifyPassword(loginDTO.Password, doctor.Patient_HashedPassword))
+                var patient = await GetPatient(loginDTO.Username);
+                if (patient != null && PasswordHasher.VerifyPassword(loginDTO.Password, patient.Patient_HashedPassword))
                 {
                     var claims = new[]
                     {
                         new Claim(JwtRegisteredClaimNames.Sub, _configuration["Jwt:Subject"]),
                         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                         new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
-                        new Claim("Patient_ID", doctor.Patient_ID.ToString()),
-                        new Claim("Username", doctor.Patient_UserName),
+                        new Claim("Patient_ID", patient.Patient_ID.ToString()),
+                        new Claim("Username", patient.Patient_UserName),
                         new Claim(ClaimTypes.Role, PatientRole)
                     };
 
@@ -53,7 +53,13 @@ namespace Patients.Controllers
                         expires: DateTime.UtcNow.AddMinutes(10),
                         signingCredentials: signIn);
 
-                    return Ok(new JwtSecurityTokenHandler().WriteToken(token));
+                    var response = new
+                    {
+                        token = new JwtSecurityTokenHandler().WriteToken(token),
+                        patientId = patient.Patient_ID
+                    };
+
+                    return Ok(response);
                 }
                 else
                 {

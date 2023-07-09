@@ -38,10 +38,7 @@ namespace Models
         public DateTime Constulting_Time { get; set; }
         [Required]
         public string? Username { get; set; }
-        [Required]
         public string? HashedPassword { get; set; }
-        [Required]
-        [RegularExpression("^(success)$")]
         public string Status { get; set; } = "pending";
         [Required]
         public string? ImageName { get; set; }

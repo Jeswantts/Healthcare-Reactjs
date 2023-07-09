@@ -1,4 +1,5 @@
 ﻿using Doctors.Context;
+using Doctors.DTO;
 using Doctors.Interface;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -56,13 +57,13 @@ namespace Doctors.Service
             {
                 if (!string.IsNullOrEmpty(doctor.ImageName))
                 {
-                    string oldImagePath = Path.Combine(@"C:\Users\pc\Desktop\img", doctor.ImageName);
+                    string oldImagePath = Path.Combine(@"C:\Users\jeswa\OneDrive\Desktop\Kanini\React\healthcare_frontend\public\Images", doctor.ImageName);
                     if (File.Exists(oldImagePath))
                     {
                         File.Delete(oldImagePath);
                     }
                 }
-                string newImagePath = Path.Combine(@"C:\Users\pc\Desktop\img", updatedDoctor.ImageName);
+                string newImagePath = Path.Combine(@"C:\Users\jeswa\OneDrive\Desktop\Kanini\React\healthcare_frontend\public\Images", updatedDoctor.ImageName);
                 using (Stream stream = new FileStream(newImagePath, FileMode.Create))
                 {
                     updatedDoctor.file.CopyTo(stream);
@@ -80,21 +81,21 @@ namespace Doctors.Service
             return doctor;
         }
 
-        public async Task<Doctor> Post([FromForm] Doctor doctor, string password)
+        public async Task<Doctor> Post([FromForm] DoctorWithPassword doctorWithPassword)
         {
-            string path = Path.Combine(@"C:\Users\pc\Desktop\img", doctor.ImageName);
+            string path = Path.Combine(@"C:\Users\jeswa\OneDrive\Desktop\Kanini\React\healthcare_frontend\public\Images", doctorWithPassword.doctor.ImageName);
             using (Stream stream = new FileStream(path, FileMode.Create))
             {
-                doctor.file.CopyTo(stream);
+                doctorWithPassword.doctor.file.CopyTo(stream);
             }
-            string hashedPassword = PasswordHasher.HashPassword(password);
-            doctor.HashedPassword = hashedPassword;
-            doctor.Status = "pending";
-            doctor.LastLogin = default;
+            string hashedPassword = PasswordHasher.HashPassword(doctorWithPassword.password);
+            doctorWithPassword.doctor.HashedPassword = hashedPassword;
+            doctorWithPassword.doctor.Status = "pending";
+            doctorWithPassword.doctor.LastLogin = default;
 
-            context.Doctor.Add(doctor);
+            context.Doctor.Add(doctorWithPassword.doctor);
             await context.SaveChangesAsync();
-            return doctor;
+            return doctorWithPassword.doctor;
         }
         public bool VerifyPassword(string password, string hashedPassword)
         {

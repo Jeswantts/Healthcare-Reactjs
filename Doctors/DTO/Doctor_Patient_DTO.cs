@@ -4,6 +4,7 @@ namespace Doctors.DTO
 {
     public class Doctor_Patient_DTO
     {
+        public int ID { get; set; }
         public string? ImageName { get; set; }
         public string? Doctor_Name { get; set; }
         public int Age { get; set; }
@@ -13,6 +14,7 @@ namespace Doctors.DTO
         public string? Constulting_Day { get; set; }
         public DateTime Constulting_Time { get; set; }
         public string? Review { get; set; }
+        public string? Status { get; set; }
 
     }
 }

@@ -39,9 +39,9 @@ namespace Patients.Controllers
             return await p.GetById(id);
         }
         [HttpPost]
-        public async Task<Patient> Add(Patient patient,string password)
+        public async Task<Patient> Add(PatientwithPassword patientwithPassword)
         {
-            return await p.Post(patient,password);
+            return await p.Post(patientwithPassword);
         }
         [HttpPut]
         public async Task<Patient> Put(Patient patient, int id)

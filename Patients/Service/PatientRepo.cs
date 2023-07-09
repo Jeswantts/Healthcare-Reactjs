@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Models;
 using Patients.Context;
+using Patients.DTO;
 using Patients.Interface;
 using System.Numerics;
 
@@ -42,13 +43,13 @@ namespace Patients.Service
             return patient;
         }
 
-        public async Task<Patient> Post(Patient patient, string password)
+        public async Task<Patient> Post(PatientwithPassword patientwithPassword)
         {
-            string hashedPassword = PasswordHasher.HashPassword(password);
-            patient.Patient_HashedPassword = hashedPassword;
-            context.Patient.Add(patient);
+            string hashedPassword = PasswordHasher.HashPassword(patientwithPassword.password);
+            patientwithPassword.patient.Patient_HashedPassword = hashedPassword;
+            context.Patient.Add(patientwithPassword.patient);
             await context.SaveChangesAsync();
-            return patient;
+            return patientwithPassword.patient;
         }
 
         public async Task<Patient> Put(Patient patient, int id)

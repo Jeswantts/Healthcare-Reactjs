@@ -37,8 +37,8 @@ namespace Appointments.Service
 
         public async Task<Appoinment> GetById(int id)
         {
-            var appointment = await context.Appoinment.FindAsync(id);
-            return appointment;
+            var appointments = await context.Appoinment.FindAsync(id);
+            return appointments;
         }
 
         public async Task<Appoinment> Post(Appoinment appoinment)
