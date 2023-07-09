@@ -1,0 +1,74 @@
+.page-container {
+    display: flex;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  
+  .left-side {
+    flex: 1;
+    background-color: blue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .info {
+    color: white;
+    text-align: center;
+  }
+  
+  .image-container {
+    margin-top: 20px;
+  }
+  
+  .image {
+    width: 200px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .right-side {
+    flex: 2;
+    background-color: white;
+    padding: 20px;
+  }
+  
+  .right-side h2 {
+    text-align: center;
+  }
+  
+  .form-container {
+    margin-top: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .form-control-file {
+    display: inline-block;
+    margin-top: 4px;
+  }
+  
+  .btn-primary {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .btn-primary:hover {
+    background-color: darkblue;
+  }
+  
